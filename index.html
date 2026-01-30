@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SANZZSTORE | Premium Digital Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           CSS VARIABLES & BASE STYLES - 180 lines
+        ============================================ */
+        :root {
+            /* Premium Red Theme */
+            --primary: #DC2626;
+            --primary-dark: #B91C1C;
+            --primary-light: #EF4444;
+            --secondary: #10B981;
+            --secondary-dark: #059669;
+            --accent: #F59E0B;
+            --accent-dark: #D97706;
+            
+            /* Neutral Colors */
+            --dark-1: #0F172A;
+            --dark-2: #1E293B;
+            --dark-3: #334155;
+            --dark-4: #475569;
+            --light-1: #F8FAFC;
+            --light-2: #F1F5F9;
+            --light-3: #E2E8F0;
+            --light-4: #CBD5E1;
+            
+            /* Payment Colors */
+            --dana-color: #00B09B;
+            --ovo-color: #4A00E0;
+            --gopay-color: #00C9FF;
+            --qris-color: #3B82F6;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            --gradient-danger: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+            --gradient-dana: linear-gradient(135deg, #00B09B 0%, #96C93D 100%);
+            --gradient-ovo: linear-gradient(135deg, #4A00E0 0%, #8E2DE2 100%);
+            --gradient-gopay: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%);
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            --shadow-red: 0 0 20px rgba(220, 38, 38, 0.3);
+            
+            /* Typography */
+            --font-primary: 'Inter', sans-serif;
+            --font-secondary: 'Poppins', sans-serif;
+            
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-3xl: 2rem;
+            --radius-full: 9999px;
+            
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Base Styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: var(--dark-1);
+            color: var(--light-1);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* ============================================
+           UTILITY CLASSES - 120 lines
+        ============================================ */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+        
+        .text-center { text-align: center; }
+        .text-gradient { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            border: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg), var(--shadow-red);
+        }
+        
+        .btn-secondary {
+            background: var(--gradient-secondary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--light-2);
+            border: 2px solid var(--dark-4);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+        }
+        
+        .btn-telegram {
+            background: linear-gradient(135deg, #0088cc, #0077b5);
+            color: white;
+        }
+        
+        .section {
+            padding: var(--space-12) 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--space-10);
+        }
+        
+        /* ============================================
+           HEADER - 80 lines
+        ============================================ */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: var(--space-4) 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: white;
+        }
+        
+        .logo-text {
+            font-family: var(--font-secondary);
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* ============================================
+           HERO SECTION - 60 lines
+        ============================================ */
+        .hero {
+            padding: var(--space-16) 0 var(--space-12);
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: var(--space-6);
+        }
+        
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--light-3);
+            margin-bottom: var(--space-8);
+        }
+        
+        /* ============================================
+           PRODUCTS SECTION - 300 lines
+        ============================================ */
+        .product-category {
+            margin-bottom: var(--space-12);
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-6);
+            color: var(--light-1);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .category-title i {
+            color: var(--primary);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .product-card {
+            background: var(--dark-2);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            border: 1px solid var(--dark-3);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+        
+        .product-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .product-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--light-1);
+        }
+        
+        .product-items {
+            margin-top: var(--space-4);
+        }
+        
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .item-name {
+            color: var(--light-3);
+        }
+        
+        .item-price {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        /* Product Action Buttons */
+        .product-actions {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-6);
+        }
+        
+        .product-whatsapp-btn,
+        .product-telegram-btn {
+            flex: 1;
+            font-size: 0.875rem;
+            padding: var(--space-2) var(--space-3);
+        }
+        
+        /* ============================================
+           NEW PRODUCTS SECTION - 200 lines
+        ============================================ */
+        .premium-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-8);
+        }
+        
+        .premium-product-card {
+            background: linear-gradient(145deg, var(--dark-2), var(--dark-1));
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            border: 1px solid var(--dark-3);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .premium-product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+        
+        .premium-product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-2xl), var(--shadow-red);
+        }
+        
+        .product-features {
+            margin: var(--space-4) 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-2) 0;
+            color: var(--light-3);
+            font-size: 0.875rem;
+        }
+        
+        .feature-item i {
+            color: var(--primary);
+        }
+        
+        /* ============================================
+           PAYMENT SECTION - 150 lines
+        ============================================ */
+        .payment-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-12);
+            margin: var(--space-12) 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+        
+        .payment-card {
+            background: var(--dark-2);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            border: 1px solid var(--dark-3);
+            transition: all var(--transition-normal);
+        }
+        
+        .payment-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .payment-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+        
+        .payment-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .payment-icon.dana { background: var(--gradient-dana); }
+        .payment-icon.ovo { background: var(--gradient-ovo); }
+        .payment-icon.gopay { background: var(--gradient-gopay); }
+        .payment-icon.qris { background: linear-gradient(135deg, var(--qris-color), #2563EB); }
+        
+        .payment-number {
+            background: var(--dark-3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin-bottom: var(--space-4);
+            border: 1px solid var(--dark-4);
+            position: relative;
+        }
+        
+        .payment-number-text {
+            font-family: 'Courier New', monospace;
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 1px;
+            color: var(--light-1);
+        }
+        
+        .copy-indicator {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all var(--transition-normal);
+        }
+        
+        .copy-indicator.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ============================================
+           QRIS MODAL - 120 lines
+        ============================================ */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-6);
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--dark-2);
+            border-radius: var(--radius-2xl);
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid var(--dark-3);
+            box-shadow: var(--shadow-2xl);
+            position: relative;
+            animation: modalIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .modal-header {
+            padding: var(--space-6);
+            border-bottom: 1px solid var(--dark-3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--light-1);
+        }
+        
+        .modal-body {
+            padding: var(--space-6);
+            text-align: center;
+        }
+        
+        .qris-container {
+            background: white;
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            margin: 0 auto var(--space-6);
+            max-width: 300px;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--primary);
+        }
+        
+        .qris-image {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            margin-top: var(--space-6);
+        }
+        
+        /* ============================================
+           CONTACT SECTION - 80 lines
+        ============================================ */
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+            justify-content: center;
+            margin-top: var(--space-8);
+        }
+        
+        .contact-btn {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+        
+        /* ============================================
+           NOTIFICATION - 40 lines
+        ============================================ */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--dark-2);
+            border: 1px solid var(--dark-3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4) var(--space-6);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            box-shadow: var(--shadow-lg);
+            z-index: 1002;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all var(--transition-normal);
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        /* ============================================
+           FOOTER - 60 lines
+        ============================================ */
+        .footer {
+            background: var(--dark-2);
+            padding: var(--space-12) 0;
+            border-top: 1px solid var(--dark-3);
+            margin-top: var(--space-12);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-6);
+        }
+        
+        /* ============================================
+           RESPONSIVE DESIGN - 100 lines
+        ============================================ */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--space-4);
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .products-grid,
+            .premium-products-grid,
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+            
+            .contact-btn {
+                min-width: 100%;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="notification-text" id="notificationText">Berhasil disalin!</div>
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="logo-text">SANZZSTORE</div>
+                </div>
+                
+                <div class="header-actions">
+                    <a href="https://wa.me/6285880839270" class="btn btn-primary btn-sm" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Order Now
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">SANZZSTORE Premium</h1>
+                <p class="hero-description">
+                    Platform terpercaya untuk produk digital premium. Dapatkan akses ke berbagai produk digital berkualitas dengan harga terbaik.
+                </p>
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4);">
+                    <a href="#products" class="btn btn-primary">
+                        <i class="fas fa-shopping-cart"></i> Lihat Produk
+                    </a>
+                    <button class="btn btn-outline" id="showQrisBtn">
+                        <i class="fas fa-qrcode"></i> QRIS Payment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Products Section -->
+    <section class="section" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Produk <span class="text-gradient">Digital</span></h2>
+                <p>Pilih produk digital yang Anda butuhkan</p>
+            </div>
+            
+            <!-- Product 1: Jual/Beli Akun -->
+            <div class="product-category">
+                <h3 class="category-title">
+                    <i class="fas fa-gamepad"></i> JUAL/BELI AKUN GAME
+                </h3>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="product-name">Mobile Legends</div>
+                        </div>
+                        <div class="product-items">
+                            <div class="product-item">
+                                <span class="item-name">Epic - Mythic</span>
+                                <span class="item-price">Rp 50.000</span>
+                            </div>
+                            <div class="product-item">
+                                <span class="item-name">Legend Skin</span>
+                                <span class="item-price">Rp 100.000</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn product-whatsapp-btn" data-product="Mobile Legends">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </button>
+                            <button class="btn product-telegram-btn" data-product="Mobile Legends">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-icon">
+                                <i class="fas fa-crosshairs"></i>
+                            </div>
+                            <div class="product-name">Free Fire</div>
+                        </div>
+                        <div class="product-items">
+                            <div class="product-item">
+                                <span class="item-name">Heroic - Grandmaster</span>
+                                <span class="item-price">Rp 75.000</span>
+                            </div>
+                            <div class="product-item">
+                                <span class="item-name">Diamond Bundle</span>
+                                <span class="item-price">Rp 150.000</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn product-whatsapp-btn" data-product="Free Fire">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </button>
+                            <button class="btn product-telegram-btn" data-product="Free Fire">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <div class="product-name">Roblox</div>
+                        </div>
+                        <div class="product-items">
+                            <div class="product-item">
+                                <span class="item-name">10K Robux</span>
+                                <span class="item-price">Rp 100.000</span>
+                            </div>
+                            <div class="product-item">
+                                <span class="item-name">Limited Items</span>
+                                <span class="item-price">Rp 250.000</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn product-whatsapp-btn" data-product="Roblox">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </button>
+                            <button class="btn product-telegram-btn" data-product="Roblox">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2: NOKOS -->
+            <div class="product-category">
+                <h3 class="category-title">
+                    <i class="fas fa-phone"></i> NOKOS (Nomor Kosong)
+                </h3>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-icon">
+                                <i class="fas fa-sim-card"></i>
+                            </div>
+                            <div class="product-name">Paket NOKOS</div>
+                        </div>
+                        <div class="product-items">
+                            <div class="product-item">
+                                <span class="item-name">All Operators</span>
+                                <span class="item-price">Rp 5.000</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn product-whatsapp-btn" data-product="NOKOS">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </button>
+                            <button class="btn product-telegram-btn" data-product="NOKOS">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3: PANEL -->
+            <div class="product-category">
+                <h3 class="category-title">
+                    <i class="fas fa-wifi"></i> PANEL INTERNET
+                </h3>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-header">
+                            <div class="product-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div class="product-name">Paket Data</div>
+                        </div>
+                        <div class="product-items">
+                            <div class="product-item">
+                                <span class="item-name">1GB</span>
+                                <span class="item-price">Rp 3.000</span>
+                            </div>
+                            <div class="product-item">
+                                <span class="item-name">5GB</span>
+                                <span class="item-price">Rp 11.000</span>
+                            </div>
+                            <div class="product-item">
+                                <span class="item-name">Unlimited</span>
+                                <span class="item-price">Rp 50.000</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn product-whatsapp-btn" data-product="Panel Internet">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </button>
+                            <button class="btn product-telegram-btn" data-product="Panel Internet">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NEW PRODUCTS SECTION -->
+            <div class="section-title" style="margin-top: var(--space-16);">
+                <h2>Produk <span class="text-gradient">Premium</span></h2>
+                <p>Panel dan APK Premium Berkualitas</p>
+            </div>
+            
+            <!-- Pterodactyl Panel Products -->
+            <div class="premium-products-grid">
+                <!-- Open Panel Pterodactyl -->
+                <div class="premium-product-card">
+                    <div class="product-header">
+                        <div class="product-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="product-name">Open Panel Pterodactyl</div>
+                    </div>
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Full root access & control</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited game servers</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Auto backup system</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>DDoS protection</span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary" data-product="Open Panel Pterodactyl">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="btn btn-outline" data-product="Open Panel Pterodactyl">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Open Reseller -->
+                <div class="premium-product-card">
+                    <div class="product-header">
+                        <div class="product-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="product-name">Open Reseller Panel</div>
+                    </div>
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>White-label dashboard</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Multi-user management</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Custom pricing system</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>API access</span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary" data-product="Open Reseller Panel">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="btn btn-outline" data-product="Open Reseller Panel">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Open Admin Panel -->
+                <div class="premium-product-card">
+                    <div class="product-header">
+                        <div class="product-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="product-name">Open Admin Panel</div>
+                    </div>
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Full admin privileges</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>User management system</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Server monitoring tools</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Security settings</span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary" data-product="Open Admin Panel">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="btn btn-outline" data-product="Open Admin Panel">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Open Owner Panel -->
+                <div class="premium-product-card">
+                    <div class="product-header">
+                        <div class="product-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="product-name">Open Owner Panel</div>
+                    </div>
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Full system control</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Custom branding</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Revenue tracking</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced analytics</span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary" data-product="Open Owner Panel">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="btn btn-outline" data-product="Open Owner Panel">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- SELL APK UNBANNED -->
+                <div class="premium-product-card">
+                    <div class="product-header">
+                        <div class="product-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="product-name">SELL APK UNBANNED</div>
+                    </div>
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced anti-ban system</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Regular updates</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Multi-account support</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>24/7 customer support</span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary" data-product="SELL APK UNBANNED">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="btn btn-outline" data-product="SELL APK UNBANNED">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Payment Methods Section -->
+    <section class="payment-section" id="payment">
+        <div class="container">
+            <div class="section-title">
+                <h2>Metode <span class="text-gradient">Pembayaran</span></h2>
+                <p>Pilih metode pembayaran yang paling nyaman</p>
+            </div>
+            
+            <div class="payment-methods">
+                <!-- DANA -->
+                <div class="payment-card">
+                    <div class="payment-header">
+                        <div class="payment-icon dana">
+                            <i class="fab fa-dyalog"></i>
+                        </div>
+                        <div>
+                            <div class="payment-name">DANA</div>
+                            <p class="text-light-4">E-wallet Indonesia</p>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-number">
+                        <div class="payment-number-text" id="danaNumber">085880839270</div>
+                        <div class="copy-indicator" id="danaCopyIndicator">
+                            <i class="fas fa-check"></i> Tersalin
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-secondary" data-copy="danaNumber" data-type="dana">
+                        <i class="fas fa-copy"></i> Salin Nomor
+                    </button>
+                </div>
+                
+                <!-- OVO -->
+                <div class="payment-card">
+                    <div class="payment-header">
+                        <div class="payment-icon ovo">
+                            <i class="fab fa-cc-amazon-pay"></i>
+                        </div>
+                        <div>
+                            <div class="payment-name">OVO</div>
+                            <p class="text-light-4">Digital Payment</p>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-number">
+                        <div class="payment-number-text" id="ovoNumber">085880839270</div>
+                        <div class="copy-indicator" id="ovoCopyIndicator">
+                            <i class="fas fa-check"></i> Tersalin
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-secondary" data-copy="ovoNumber" data-type="ovo">
+                        <i class="fas fa-copy"></i> Salin Nomor
+                    </button>
+                </div>
+                
+                <!-- GoPay -->
+                <div class="payment-card">
+                    <div class="payment-header">
+                        <div class="payment-icon gopay">
+                            <i class="fab fa-google-pay"></i>
+                        </div>
+                        <div>
+                            <div class="payment-name">GoPay</div>
+                            <p class="text-light-4">by Gojek</p>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-number">
+                        <div class="payment-number-text" id="gopayNumber">085880839270</div>
+                        <div class="copy-indicator" id="gopayCopyIndicator">
+                            <i class="fas fa-check"></i> Tersalin
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-secondary" data-copy="gopayNumber" data-type="gopay">
+                        <i class="fas fa-copy"></i> Salin Nomor
+                    </button>
+                </div>
+                
+                <!-- QRIS -->
+                <div class="payment-card">
+                    <div class="payment-header">
+                        <div class="payment-icon qris">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <div>
+                            <div class="payment-name">QRIS</div>
+                            <p class="text-light-4">Scan untuk bayar</p>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-number">
+                        <div class="payment-number-text">Scan QR Code untuk pembayaran</div>
+                    </div>
+                    
+                    <button class="btn btn-primary" id="showQrisModalBtn">
+                        <i class="fas fa-expand"></i> Lihat & Download QRIS
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hubungi <span class="text-gradient">Admin</span></h2>
+                <p>Butuh bantuan? Hubungi admin kami</p>
+            </div>
+            
+            <div class="contact-buttons">
+                <a href="https://wa.me/6285880839270?text=Halo%20SANZZSTORE,%20saya%20ingin%20konsultasi%20tentang%20produk" 
+                   class="btn btn-whatsapp contact-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Admin
+                </a>
+                
+                <a href="https://t.me/Sanzz1232" 
+                   class="btn btn-telegram contact-btn" target="_blank">
+                    <i class="fab fa-telegram"></i> Telegram @Sanzz1232
+                </a>
+                
+                <button class="btn btn-outline contact-btn" data-copy="085880839270">
+                    <i class="fas fa-copy"></i> Salin Nomor WhatsApp
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="logo-text">SANZZSTORE</div>
+                </div>
+                <p class="text-light-4">
+                    © 2023 SANZZSTORE. All rights reserved. Platform terpercaya untuk produk digital premium.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- QRIS Modal -->
+    <div class="modal" id="qrisModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <i class="fas fa-qrcode"></i> QRIS Payment Code
+                </div>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="qris-container">
+                    <img src="https://files.catbox.moe/nfkk8a.jpg" alt="QRIS Code" class="qris-image" id="qrisImage">
+                </div>
+                <p>Scan kode QR di atas menggunakan aplikasi bank atau dompet digital untuk pembayaran.</p>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" id="downloadQrisBtn">
+                        <i class="fas fa-download"></i> Download QR Code
+                    </button>
+                    <button class="btn btn-outline" id="closeModalBtn">
+                        <i class="fas fa-times"></i> Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Configuration
+        const CONFIG = {
+            whatsappNumber: '6285880839270',
+            telegramUsername: 'Sanzz1232',
+            qrisImageUrl: 'https://files.catbox.moe/nfkk8a.jpg',
+            products: {
+                'Mobile Legends': 'Rp 50.000 - 100.000',
+                'Free Fire': 'Rp 75.000 - 150.000',
+                'Roblox': 'Rp 100.000 - 250.000',
+                'NOKOS': 'Rp 5.000 per nomor',
+                'Panel Internet': 'Rp 3.000 - 50.000',
+                'Open Panel Pterodactyl': 'Rp 350.000 - 500.000',
+                'Open Reseller Panel': 'Rp 750.000 - 2.000.000',
+                'Open Admin Panel': 'Rp 300.000 - 500.000',
+                'Open Owner Panel': 'Rp 1.500.000 - 3.000.000',
+                'SELL APK UNBANNED': 'Rp 100.000 - 500.000'
+            }
+        };
+
+        // DOM Elements
+        const DOM = {
+            qrisModal: document.getElementById('qrisModal'),
+            modalClose: document.getElementById('modalClose'),
+            closeModalBtn: document.getElementById('closeModalBtn'),
+            showQrisBtn: document.getElementById('showQrisBtn'),
+            showQrisModalBtn: document.getElementById('showQrisModalBtn'),
+            downloadQrisBtn: document.getElementById('downloadQrisBtn'),
+            notification: document.getElementById('notification'),
+            notificationText: document.getElementById('notificationText')
+        };
+
+        // Utility Functions
+        const Utils = {
+            showNotification(message) {
+                DOM.notificationText.textContent = message;
+                DOM.notification.classList.add('show');
+                setTimeout(() => DOM.notification.classList.remove('show'), 3000);
+            },
+
+            async copyToClipboard(text) {
+                try {
+                    await navigator.clipboard.writeText(text);
+                    return true;
+                } catch (err) {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    return true;
+                }
+            },
+
+            downloadQRIS() {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                const img = new Image();
+                
+                img.crossOrigin = 'Anonymous';
+                img.onload = function() {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                    
+                    canvas.toBlob(function(blob) {
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = 'sanzzstore-qris-payment.jpg';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        URL.revokeObjectURL(url);
+                        
+                        Utils.showNotification('QRIS berhasil diunduh ke penyimpanan!');
+                    }, 'image/jpeg', 1.0);
+                };
+                
+                img.onerror = function() {
+                    const link = document.createElement('a');
+                    link.href = CONFIG.qrisImageUrl;
+                    link.download = 'sanzzstore-qris-payment.jpg';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    Utils.showNotification('QRIS berhasil diunduh!');
+                };
+                
+                img.src = CONFIG.qrisImageUrl;
+            },
+
+            generateWhatsAppMessage(productName) {
+                const price = CONFIG.products[productName] || 'Tanya harga';
+                return encodeURIComponent(
+                    `Halo SANZZSTORE, saya tertarik dengan produk:\n\n` +
+                    `📦 Produk: ${productName}\n` +
+                    `💰 Harga: ${price}\n\n` +
+                    `Bisa info detail dan cara ordernya?`
+                );
+            },
+
+            generateTelegramMessage(productName) {
+                const price = CONFIG.products[productName] || 'Tanya harga';
+                return encodeURIComponent(
+                    `Halo @Sanzz1232, saya tertarik dengan produk:\n\n` +
+                    `📦 Produk: ${productName}\n` +
+                    `💰 Harga: ${price}\n\n` +
+                    `Bisa info detail dan cara ordernya?`
+                );
+            }
+        };
+
+        // Modal Functions
+        const Modal = {
+            openQRISModal() {
+                DOM.qrisModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            },
+
+            closeQRISModal() {
+                DOM.qrisModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        };
+
+        // Payment Functions
+        const Payment = {
+            async copyPaymentNumber(type) {
+                const number = '085880839270';
+                const names = { dana: 'DANA', ovo: 'OVO', gopay: 'GoPay' };
+                
+                try {
+                    await Utils.copyToClipboard(number);
+                    const indicator = document.getElementById(`${type}CopyIndicator`);
+                    if (indicator) {
+                        indicator.classList.add('show');
+                        setTimeout(() => indicator.classList.remove('show'), 2000);
+                    }
+                    Utils.showNotification(`Nomor ${names[type]} berhasil disalin!`);
+                } catch (error) {
+                    Utils.showNotification('Gagal menyalin nomor');
+                }
+            },
+
+            setupCopyButtons() {
+                document.querySelectorAll('[data-copy]').forEach(button => {
+                    button.addEventListener('click', async (e) => {
+                        e.preventDefault();
+                        const type = button.getAttribute('data-type');
+                        if (type) {
+                            await this.copyPaymentNumber(type);
+                        } else {
+                            const targetId = button.getAttribute('data-copy');
+                            const element = document.getElementById(targetId);
+                            if (element) {
+                                await Utils.copyToClipboard(element.textContent);
+                                Utils.showNotification('Berhasil disalin!');
+                            }
+                        }
+                    });
+                });
+            }
+        };
+
+        // Product Functions
+        const Product = {
+            setupProductButtons() {
+                // WhatsApp buttons
+                document.querySelectorAll('.product-whatsapp-btn, .btn-primary[data-product]').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const productName = button.getAttribute('data-product');
+                        const message = Utils.generateWhatsAppMessage(productName);
+                        window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${message}`, '_blank');
+                    });
+                });
+
+                // Telegram buttons
+                document.querySelectorAll('.product-telegram-btn, .btn-outline[data-product]').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const productName = button.getAttribute('data-product');
+                        const message = Utils.generateTelegramMessage(productName);
+                        window.open(`https://t.me/${CONFIG.telegramUsername}?text=${message}`, '_blank');
+                    });
+                });
+            }
+        };
+
+        // Event Listeners
+        const setupEventListeners = () => {
+            // QRIS Modal
+            DOM.showQrisBtn.addEventListener('click', () => Modal.openQRISModal());
+            DOM.showQrisModalBtn.addEventListener('click', () => Modal.openQRISModal());
+            DOM.modalClose.addEventListener('click', () => Modal.closeQRISModal());
+            DOM.closeModalBtn.addEventListener('click', () => Modal.closeQRISModal());
+            
+            // Download QRIS
+            DOM.downloadQrisBtn.addEventListener('click', () => {
+                Utils.downloadQRIS();
+                Modal.closeQRISModal();
+            });
+            
+            // Close modal on overlay click
+            DOM.qrisModal.addEventListener('click', (e) => {
+                if (e.target === DOM.qrisModal) Modal.closeQRISModal();
+            });
+            
+            // Close modal on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && DOM.qrisModal.classList.contains('active')) {
+                    Modal.closeQRISModal();
+                }
+            });
+            
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        };
+
+        // Initialization
+        const init = () => {
+            setupEventListeners();
+            Payment.setupCopyButtons();
+            Product.setupProductButtons();
+            
+            setTimeout(() => {
+                Utils.showNotification('🔥 Selamat datang di SANZZSTORE!');
+            }, 1000);
+            
+            console.log('SANZZSTORE - Red Theme initialized');
+        };
+
+        // Start the application
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
